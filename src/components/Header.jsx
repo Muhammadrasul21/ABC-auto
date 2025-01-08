@@ -2,8 +2,9 @@ import React from 'react'
 import { GoClock } from "react-icons/go";
 import logo from "../assets/logonavbar.svg"
 import { IoCall, IoStatsChartOutline, IoLogoWhatsapp } from "react-icons/io5";
-import { FaAngleDown } from "react-icons/fa";
 import { CiHeart, CiSearch, CiLocationOn } from "react-icons/ci";
+import { menuItems, navbarItems} from "../stock";
+import { Link } from "react-router-dom";
 
 
 const Header = () => {
@@ -40,16 +41,14 @@ const Header = () => {
     <img src={logo} alt="#" />
  <hr className='hidden sm:flex h-10 w-0 border border-[#C2C2C4]' />
  <div className='hidden sm:flex flex-row '>
-  <p className='font-bold leading-[18px] w-[200px] hidden lg:flex'><div className='inline-block bg-red-600 text-white rounded-3xl px-3 mr-2'>10 лет</div>превосходим ваши ожидания</p>
+  <p className='font-bold leading-[18px] w-[200px] hidden lg:flex'><div className='flex items-center justify-center bg-red-600 text-white rounded-3xl px-4 mr-2'>10 лет</div>превосходим ваши ожидания</p>
  </div>
 
    </div>
     <ul className='hidden lg:flex items-center gap-4 text-sm'>
-      <li className='text-black hover:text-red-600 transition duration-300 ease-out  cursor-pointer'>Подбор авто</li>
-      <li className='text-black hover:text-red-600 transition duration-300 ease-out cursor-pointer'>О компании</li>
-      <li className='text-black hover:text-red-600 transition duration-300 ease-out cursor-pointer'>Техцентр</li>
-      <li className='text-black hover:text-red-600 transition duration-300 ease-out cursor-pointer'>Отзывы</li>
-      <li className='text-black hover:text-red-600 transition duration-300 ease-out cursor-pointer'>Контакты</li>
+      {navbarItems.map((item, index)=>(
+        <li key={index} className='text-black hover:text-red-600 transition duration-300 ease-out  cursor-pointer'>{item}</li>
+      ))}
     </ul>
      <div className='flex items-center gap-5'>
       <IoCall className='hidden sm:flex bg-red-600 text-white rounded-full w-8 h-8 p-1'/>
@@ -63,14 +62,24 @@ const Header = () => {
         </div>
 
         <div className=' hidden lg:flex'>
-          <ul className='flex w-full items-center justify-between gap-20 mt-6'>
-            <li className='flex items-center gap-1 font-semibold hover:text-red-600 transition duration-300 ease-in-out cursor-pointer'>Каталог авто  <FaAngleDown/></li>
-            <li className='flex items-center gap-1 font-semibold hover:text-red-600 transition duration-300 ease-in-out cursor-pointer'>Авто с пробегом  <FaAngleDown/></li>
-            <li className='flex items-center gap-1 font-semibold hover:text-red-600 transition duration-300 ease-in-out cursor-pointer'>Кредит и рассрочка  <FaAngleDown/></li>
-            <li className='flex items-center gap-1 font-semibold hover:text-red-600 transition duration-300 ease-in-out cursor-pointer'>Спецпредложения  <FaAngleDown/></li>
-            <li className='flex items-center gap-1 font-semibold hover:text-red-600 transition duration-300 ease-in-out cursor-pointer'>Такси в кредит  <FaAngleDown/></li>  
-            <li className='flex gap-6 cursor-pointer'><CiHeart className='w-8 h-8  hover:text-red-600 transition duration-300 ease-in-out'/> <IoStatsChartOutline className='w-8 h-8  hover:text-red-600 transition duration-300 ease-in-out'/> <CiSearch className='w-8 h-8  hover:text-red-600 transition duration-300 ease-in-out'/></li>
-          </ul>
+        <ul className="hidden lg:flex items-center gap-20 mt-6">
+              {menuItems.map((item, index) => (
+                <li
+                key={index}
+                className="flex items-center gap-1 font-semibold hover:text-red-600 transition duration-300 ease-in-out cursor-pointer"
+              >
+              <Link to="/catalog" className="flex items-center gap-1">
+               {item.title} <item.icon />
+              </Link>
+
+              </li>
+              ))}
+              <li className="flex gap-6 cursor-pointer">
+                <CiHeart className="w-8 h-8 hover:text-red-600 transition duration-300 ease-in-out" />
+                <IoStatsChartOutline className="w-8 h-8 hover:text-red-600 transition duration-300 ease-in-out" />
+                <CiSearch className="w-8 h-8 hover:text-red-600 transition duration-300 ease-in-out" />
+              </li>
+            </ul>
         </div>
       </div>
     </div>
